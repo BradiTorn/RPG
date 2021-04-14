@@ -187,7 +187,7 @@ void load() {
         at1 = loade["at1"].get<string>();
         at2 = loade["at2"].get<string>();
         at3 = loade["at3"].get<string>();
-        vib = loade["i"].get<char>();
+        vib = loade["vib"].get<char>();
 
     }
 
@@ -342,7 +342,7 @@ int main()
             at1 = lop["at1"].get<string>();
             at2 = lop["at2"].get<string>();
             at3 = lop["at3"].get<string>();
-            vib = lop["i"].get<char>();
+            vib = lop["vib"].get<char>();
         }
 
     }
