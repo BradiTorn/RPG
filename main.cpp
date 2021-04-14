@@ -4,7 +4,7 @@
 #include <Windows.h>
 #include <sstream>
 #include <fstream>
-#include "json.hpp"
+#include "nlohmann/json.hpp"
 
 using namespace std;
 
@@ -23,18 +23,11 @@ int zahita;
 int vinos;
 int coin;
 string Name;
-int hpEl;
-int hpPex;
-int hpMag;
-int силаПех;
-int выносливостьЭл;
-int интеллектМаг;
 int Elf;
 int Pex;
 int Mag;
 int otr;
 int hpMax;
-int HpOtdih;
 int hpVr;
 int ataka1;
 int ataka2;
@@ -42,7 +35,7 @@ int ataka3;
 string at1;
 string at2;
 string at3;
-int Число;
+int chislo;
 string prost;
 int sluch;
 int damageEl;
@@ -50,9 +43,9 @@ int damagePex;
 int damageMag;
 char vib;
 
-class Класс {
+class clas {
 public:
-    void Воин() {
+    void clvoin() {
 
         system("cls");
 
@@ -80,7 +73,7 @@ public:
         at3 = "Удар копьём";
 
     }
-    void Маг() {
+    void clmag() {
         system("cls");
 
         cout << "Ваш профиль: \n";
@@ -107,7 +100,7 @@ public:
         at2 = "Ледяной шип";
         at3 = "Молния";
     }
-    void Лучник() {
+    void clluch() {
         system("cls");
 
         cout << "Ваш профиль: \n";
@@ -180,17 +173,17 @@ void load() {
         hp = loade["hp"].get<int>();
         hpMax = loade["hp1"].get<int>();
         sila = loade["sila"].get<int>();
-        vinos = loade["выносливость"].get<int>();
-        intelect = loade["интеллект"].get<int>();
+        vinos = loade["vinos"].get<int>();
+        intelect = loade["intelect"].get<int>();
         damage = loade["damage"].get<int>();
-        zahita = loade["Защита"].get<int>();
+        zahita = loade["zahita"].get<int>();
         lvl = loade["lvl"].get<int>();
-        op1 = loade["опыт1"].get<int>();
-        op2 = loade["опыт2"].get<int>();
+        op1 = loade["op1"].get<int>();
+        op2 = loade["op2"].get<int>();
         coin = loade["coin"].get<int>();
-        ataka1 = loade["Атака1"].get<int>();
-        ataka2 = loade["Атака2"].get<int>();
-        ataka3 = loade["Атака3"].get<int>();
+        ataka1 = loade["ataka1"].get<int>();
+        ataka2 = loade["ataka2"].get<int>();
+        ataka3 = loade["ataka3"].get<int>();
         at1 = loade["at1"].get<string>();
         at2 = loade["at2"].get<string>();
         at3 = loade["at3"].get<string>();
@@ -203,23 +196,23 @@ void load() {
 };
 
 
-class Юниты {
+class unit {
 public:
-    void Эльфы() {
+    void elfifan() {
         if (coin >= 400) {
             Elf += 3;
             otr += 3;
             coin = coin - 400;
         }
     }
-    void Пехотинцы() {
+    void pexun() {
         if (coin >= 500) {
             Pex += 5;
             otr += 5;
             coin = coin - 500;
         }
     }
-    void Маги() {
+    void magun() {
 
         if (coin >= 400) {
             Mag += 3;
@@ -230,21 +223,21 @@ public:
 };
 
 
-class Навыки {
+class navik {
 public:
-    void ОгнШар() {
+    void OgnHar() {
         ataka1 += 10;
         at1 = "Улучшенный огненный шар";
     }
-    void ПовХП() {
+    void PovHP() {
         hpMax += 30;
         hp += 30;
     }
-    void РядОгнСтрел() {
+    void OgnStrel() {
         ataka2 += 10;
         at2 = "Ряд огненный стрел";
     }
-    void ТяжелыйУдарМолотом() {
+    void TajYdar() {
 
         at1 = "Тяжелый удар молотом";
         ataka1 += 10;
@@ -254,51 +247,51 @@ public:
 
 
 
-class Артефакты {
+class artef {
 public:
-    void НаручиСилы() {
+    void Nar() {
         ataka1 += 5;
     }
-    void ПоножиСилы() {
+    void Ponog() {
         ataka1 += 10;
     }
-    void ШлемЗдоровья() {
+    void Hlem() {
         hpMax += 10;
     }
-    void НагрудникЗдоровья() {
+    void Nagrudnik() {
         hpMax += 20;
     }
 
 };
 
-class Враги {
+class vragi {
 public:
-    void Скелеты() {
+    void skelens() {
         hpVr = 10;
         damageVr = 5;
         cout << "Вы встретили маленький отряд скелетов, который угрожает вашей жизни. Ваши действия? \n";
     }
-    void Орки() {
+    void orki() {
         hpVr = 23;
         damageVr = 10;
         cout << "Вы встретили небольшую группу орков, которые угрожают вашей жизни. Ваши действия? \n";
     }
-    void Бандиты() {
+    void bandit() {
         hpVr = 20;
         damageVr = 5;
         cout << "Вы встретили шайку бандитов, которые угрожают вашей жизни. Ваши действия? \n";
     }
-    void Босс1() {
+    void bos1() {
         hpVr = 300;
         damageVr = 15;
         cout << "Вы вошли в подземелье. Немного побродив по нему вы натыкаетесь на могущественного Лича, обитающее только в этих местах. Ваши действия? \n";
     }
-    void Босс2() {
+    void bos2() {
         hpVr = 400;
         damageVr = 25;
         cout << "Вы вошли в подземелье. Немного побродив по нему вы натыкаетесь на могущественного Дракона, обитающее только в этих местах. Ваши действия? \n";
     }
-    void Босс3() {
+    void bos3() {
         hpVr = 700;
         damageVr = 30;
         cout << "Вы вошли в подземелье. Немного побродив по нему вы натыкаетесь на могущественного Голема, обитающее только в этих местах. Ваши действия? \n";
@@ -313,8 +306,8 @@ char input_char() {
 
 int main()
 {
-    SetConsoleCP(1251);
-    SetConsoleOutputCP(1251);
+    SetConsoleCP(CP_UTF8);
+    SetConsoleOutputCP(CP_UTF8);
 
     int z;
     cout << "Введите имя вашего персонажа: ";
@@ -335,17 +328,17 @@ int main()
             hp = lop["hp"].get<int>();
             hpMax = lop["hp1"].get<int>();
             sila = lop["sila"].get<int>();
-            vinos = lop["выносливость"].get<int>();
-            intelect = lop["интеллект"].get<int>();
+            vinos = lop["vinos"].get<int>();
+            intelect = lop["intelect"].get<int>();
             damage = lop["damage"].get<int>();
-            zahita = lop["Защита"].get<int>();
+            zahita = lop["zahita"].get<int>();
             lvl = lop["lvl"].get<int>();
-            op1 = lop["опыт1"].get<int>();
-            op2 = lop["опыт2"].get<int>();
+            op1 = lop["op1"].get<int>();
+            op2 = lop["op2"].get<int>();
             coin = lop["coin"].get<int>();
-            ataka1 = lop["Атака1"].get<int>();
-            ataka2 = lop["Атака2"].get<int>();
-            ataka3 = lop["Атака3"].get<int>();
+            ataka1 = lop["ataka1"].get<int>();
+            ataka2 = lop["ataka2"].get<int>();
+            ataka3 = lop["ataka3"].get<int>();
             at1 = lop["at1"].get<string>();
             at2 = lop["at2"].get<string>();
             at3 = lop["at3"].get<string>();
@@ -386,8 +379,8 @@ int main()
                         vinos = 8;
                         intelect = 15;
 
-                        Класс класс;
-                        класс.Маг();
+                        clas clasper;
+                        clasper.clmag();
                         system("PAUSE");
                         break;
                     }
@@ -405,8 +398,8 @@ int main()
                         vinos = 10;
                         intelect = 7;
 
-                        Класс класс;
-                        класс.Воин();
+                        clas clasper;
+                        clasper.clvoin();
                         system("PAUSE");
                         break;
                     }
@@ -424,8 +417,8 @@ int main()
                         vinos = 12;
                         intelect = 7;
 
-                        Класс класс;
-                        класс.Лучник();
+                        clas clasper;
+                        clasper.clluch();
                         system("PAUSE");
                         break;
                     }
@@ -472,10 +465,10 @@ int main()
 
                     cout << "Золото -  " << coin << "\n";
                     cout << "----------------------- \n";
-                    cout << "Число отряда -  " << otr << "\n";
-                    cout << "Число эльфов в отряде -  " << Elf << "\n";
-                    cout << "Число обученных пехотинцев в отряде -  " << Pex << "\n";
-                    cout << "Число огненных магов в отряде -  " << Mag << "\n";
+                    cout << "chislo отряда -  " << otr << "\n";
+                    cout << "chislo эльфов в отряде -  " << Elf << "\n";
+                    cout << "chislo обученных пехотинцев в отряде -  " << Pex << "\n";
+                    cout << "chislo огненных магов в отряде -  " << Mag << "\n";
 
                     cout << "\n";
                     cout << "\n";
@@ -499,18 +492,18 @@ int main()
 
                         }
                         case '2': {
-                            Юниты юниты;
-                            юниты.Эльфы();
+                            unit units;
+                            units.elfifan();
                             break;
                         }
                         case '3': {
-                            Юниты юниты;
-                            юниты.Пехотинцы();
+                            unit units;
+                            units.pexun();
                             break;
                         }
                         case '4': {
-                            Юниты юниты;
-                            юниты.Маги();
+                            unit units;
+                            units.magun();
                             break;
                         }
                         case '5': {
@@ -538,19 +531,19 @@ int main()
                     cout << "Вы вошли в лес полный опасностей и приключений. Никогда не знаешь, кого здесь встретишь... \n";
                     cout << "------------------------------------------------------------------------------------------ \n";
 
-                    Число = rand() % 3 + 1;
+                    chislo = rand() % 3 + 1;
 
-                    if (Число == 1) {
-                        Враги враг;
-                        враг.Скелеты();
+                    if (chislo == 1) {
+                        vragi vrag;
+                        vrag.skelens();
                     }
-                    else if (Число == 2) {
-                        Враги враг;
-                        враг.Орки();
+                    else if (chislo == 2) {
+                        vragi vrag;
+                        vrag.orki();
                     }
-                    else if (Число == 3) {
-                        Враги враг;
-                        враг.Бандиты();
+                    else if (chislo == 3) {
+                        vragi vrag;
+                        vrag.bandit();
                     }
                     while (true) {
                         if (hpVr > 0) {
@@ -570,11 +563,11 @@ int main()
 
                                     if (f == '1') {
 
-                                        Число = rand() % 5 + 1;
+                                        chislo = rand() % 5 + 1;
                                         if (Elf > 0) {
 
 
-                                            if (Число == 1) {
+                                            if (chislo == 1) {
                                                 Elf -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного эльфа" << "\n";
@@ -584,7 +577,7 @@ int main()
                                         if (Pex > 0) {
 
 
-                                            if (Число == 2) {
+                                            if (chislo == 2) {
                                                 Pex -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного пехотинца" << "\n";
@@ -592,7 +585,7 @@ int main()
 
                                         }
                                         if (Mag > 0) {
-                                            if (Число == 3) {
+                                            if (chislo == 3) {
                                                 Mag -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного мага" << "\n";
@@ -622,10 +615,10 @@ int main()
                                     }
                                     else if (f == '2') {
 
-                                        Число = rand() % 5 + 1;
+                                        chislo = rand() % 5 + 1;
                                         if (Elf > 0) {
 
-                                            if (Число == 1) {
+                                            if (chislo == 1) {
                                                 Elf -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного эльфа" << "\n";
@@ -633,7 +626,7 @@ int main()
                                         }
                                         if (Pex > 0) {
 
-                                            if (Число == 2) {
+                                            if (chislo == 2) {
                                                 Pex -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного пехотинца" << "\n";
@@ -641,7 +634,7 @@ int main()
 
                                         }
                                         if (Mag > 0) {
-                                            if (Число == 3) {
+                                            if (chislo == 3) {
                                                 Mag -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного мага" << "\n";
@@ -672,11 +665,11 @@ int main()
 
                                     else if (f == '3') {
 
-                                        Число = rand() % 5 + 1;
+                                        chislo = rand() % 5 + 1;
                                         if (Elf > 0) {
 
 
-                                            if (Число == 1) {
+                                            if (chislo == 1) {
                                                 Elf -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного эльфа" << "\n";
@@ -686,7 +679,7 @@ int main()
                                         if (Pex > 0) {
 
 
-                                            if (Число == 2) {
+                                            if (chislo == 2) {
                                                 Pex -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного пехотинца" << "\n";
@@ -694,7 +687,7 @@ int main()
 
                                         }
                                         if (Mag > 0) {
-                                            if (Число == 3) {
+                                            if (chislo == 3) {
                                                 Mag -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного мага" << "\n";
@@ -728,11 +721,11 @@ int main()
                                 case '2': {
                                     if (f == '1') {
 
-                                        Число = rand() % 5 + 1;
+                                        chislo = rand() % 5 + 1;
                                         if (Elf > 0) {
 
 
-                                            if (Число == 1) {
+                                            if (chislo == 1) {
                                                 Elf -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного эльфа" << "\n";
@@ -742,7 +735,7 @@ int main()
                                         if (Pex > 0) {
 
 
-                                            if (Число == 2) {
+                                            if (chislo == 2) {
                                                 Pex -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного пехотинца" << "\n";
@@ -750,7 +743,7 @@ int main()
 
                                         }
                                         if (Mag > 0) {
-                                            if (Число == 3) {
+                                            if (chislo == 3) {
                                                 Mag -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного мага" << "\n";
@@ -780,11 +773,11 @@ int main()
                                     }
                                     else if (f == '2') {
 
-                                        Число = rand() % 5 + 1;
+                                        chislo = rand() % 5 + 1;
                                         if (Elf > 0) {
 
 
-                                            if (Число == 1) {
+                                            if (chislo == 1) {
                                                 Elf -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного эльфа" << "\n";
@@ -794,7 +787,7 @@ int main()
                                         if (Pex > 0) {
 
 
-                                            if (Число == 2) {
+                                            if (chislo == 2) {
                                                 Pex -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного пехотинца" << "\n";
@@ -802,7 +795,7 @@ int main()
 
                                         }
                                         if (Mag > 0) {
-                                            if (Число == 3) {
+                                            if (chislo == 3) {
                                                 Mag -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного мага" << "\n";
@@ -834,11 +827,11 @@ int main()
 
                                     else if (f == '3') {
 
-                                        Число = rand() % 5 + 1;
+                                        chislo = rand() % 5 + 1;
                                         if (Elf > 0) {
 
 
-                                            if (Число == 1) {
+                                            if (chislo == 1) {
                                                 Elf -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного эльфа" << "\n";
@@ -848,7 +841,7 @@ int main()
                                         if (Pex > 0) {
 
 
-                                            if (Число == 2) {
+                                            if (chislo == 2) {
                                                 Pex -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного пехотинца" << "\n";
@@ -856,7 +849,7 @@ int main()
 
                                         }
                                         if (Mag > 0) {
-                                            if (Число == 3) {
+                                            if (chislo == 3) {
                                                 Mag -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного мага" << "\n";
@@ -888,11 +881,11 @@ int main()
                                 case '3': {
                                     if (f == '1') {
 
-                                        Число = rand() % 5 + 1;
+                                        chislo = rand() % 5 + 1;
                                         if (Elf > 0) {
 
 
-                                            if (Число == 1) {
+                                            if (chislo == 1) {
                                                 Elf -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного эльфа" << "\n";
@@ -902,7 +895,7 @@ int main()
                                         if (Pex > 0) {
 
 
-                                            if (Число == 2) {
+                                            if (chislo == 2) {
                                                 Pex -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного пехотинца" << "\n";
@@ -910,7 +903,7 @@ int main()
 
                                         }
                                         if (Mag > 0) {
-                                            if (Число == 3) {
+                                            if (chislo == 3) {
                                                 Mag -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного мага" << "\n";
@@ -940,11 +933,11 @@ int main()
                                     }
                                     else if (f == '2') {
 
-                                        Число = rand() % 5 + 1;
+                                        chislo = rand() % 5 + 1;
                                         if (Elf > 0) {
 
 
-                                            if (Число == 1) {
+                                            if (chislo == 1) {
                                                 Elf -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного эльфа" << "\n";
@@ -954,7 +947,7 @@ int main()
                                         if (Pex > 0) {
 
 
-                                            if (Число == 2) {
+                                            if (chislo == 2) {
                                                 Pex -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного пехотинца" << "\n";
@@ -962,7 +955,7 @@ int main()
 
                                         }
                                         if (Mag > 0) {
-                                            if (Число == 3) {
+                                            if (chislo == 3) {
                                                 Mag -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного мага" << "\n";
@@ -993,10 +986,10 @@ int main()
 
                                     else if (f == '3') {
 
-                                        Число = rand() % 5 + 1;
+                                        chislo = rand() % 5 + 1;
                                         if (Elf > 0) {
 
-                                            if (Число == 1) {
+                                            if (chislo == 1) {
                                                 Elf -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного эльфа" << "\n";
@@ -1006,7 +999,7 @@ int main()
                                         if (Pex > 0) {
 
 
-                                            if (Число == 2) {
+                                            if (chislo == 2) {
                                                 Pex -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного пехотинца" << "\n";
@@ -1014,7 +1007,7 @@ int main()
 
                                         }
                                         if (Mag > 0) {
-                                            if (Число == 3) {
+                                            if (chislo == 3) {
                                                 Mag -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного мага" << "\n";
@@ -1081,8 +1074,8 @@ int main()
 
                                     cout << "НОВЫЙ ЛВЛ - " << lvl << "\n";
                                     if (lvl == 2) {
-                                        Навыки навык;
-                                        навык.ПовХП();
+                                        navik nav;
+                                        nav.PovHP();
                                         if (hp > hpMax) {
                                             hp = hpMax;
                                         }
@@ -1092,24 +1085,24 @@ int main()
                                     {
                                         case '1': {
                                             if (lvl == 3) {
-                                                Навыки навык;
-                                                навык.ОгнШар();
+                                                navik nav;
+                                                nav.OgnHar();
                                                 cout << "Вы получили новый навык - Улучшенный огненный шар \n";
                                             }
                                             break;
                                         }
                                         case '2': {
                                             if (lvl == 3) {
-                                                Навыки навык;
-                                                навык.ТяжелыйУдарМолотом();
+                                                navik nav;
+                                                nav.TajYdar();
                                                 cout << "Вы получили новый навык - Тяжелый удар молотом \n";
                                             }
                                             break;
                                         }
                                         case '3': {
                                             if (lvl == 3) {
-                                                Навыки навык;
-                                                навык.РядОгнСтрел();
+                                                navik nav;
+                                                nav.OgnStrel();
                                                 cout << "Вы получили новый навык - Ряд огненных стрел \n";
                                             }
                                             break;
@@ -1150,18 +1143,18 @@ int main()
                     switch (p)
                     {
                         case '1': {
-                            Враги враги;
-                            враги.Босс1();
+                            vragi vrag;
+                            vrag.bos1();
                             break;
                         }
                         case '2': {
-                            Враги враги;
-                            враги.Босс2();
+                            vragi vrag;
+                            vrag.bos2();
                             break;
                         }
                         case '3': {
-                            Враги враги;
-                            враги.Босс3();
+                            vragi vrag;
+                            vrag.bos3();
                             break;
                         }
                     }
@@ -1183,11 +1176,11 @@ int main()
                                 case '1': {
                                     if (f == '1') {
 
-                                        Число = rand() % 3 + 1;
+                                        chislo = rand() % 3 + 1;
                                         if (Elf > 0) {
 
 
-                                            if (Число == 1) {
+                                            if (chislo == 1) {
                                                 Elf -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного эльфа" << "\n";
@@ -1197,7 +1190,7 @@ int main()
                                         if (Pex > 0) {
 
 
-                                            if (Число == 2) {
+                                            if (chislo == 2) {
                                                 Pex -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного пехотинца" << "\n";
@@ -1205,7 +1198,7 @@ int main()
 
                                         }
                                         if (Mag > 0) {
-                                            if (Число == 3) {
+                                            if (chislo == 3) {
                                                 Mag -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного мага" << "\n";
@@ -1235,11 +1228,11 @@ int main()
                                     }
                                     else if (f == '2') {
 
-                                        Число = rand() % 3 + 1;
+                                        chislo = rand() % 3 + 1;
                                         if (Elf > 0) {
 
 
-                                            if (Число == 1) {
+                                            if (chislo == 1) {
                                                 Elf -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного эльфа" << "\n";
@@ -1249,7 +1242,7 @@ int main()
                                         if (Pex > 0) {
 
 
-                                            if (Число == 2) {
+                                            if (chislo == 2) {
                                                 Pex -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного пехотинца" << "\n";
@@ -1257,7 +1250,7 @@ int main()
 
                                         }
                                         if (Mag > 0) {
-                                            if (Число == 3) {
+                                            if (chislo == 3) {
                                                 Mag -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного мага" << "\n";
@@ -1288,11 +1281,11 @@ int main()
 
                                     else if (f == '3') {
 
-                                        Число = rand() % 3 + 1;
+                                        chislo = rand() % 3 + 1;
                                         if (Elf > 0) {
 
 
-                                            if (Число == 1) {
+                                            if (chislo == 1) {
                                                 Elf -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного эльфа" << "\n";
@@ -1302,7 +1295,7 @@ int main()
                                         if (Pex > 0) {
 
 
-                                            if (Число == 2) {
+                                            if (chislo == 2) {
                                                 Pex -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного пехотинца" << "\n";
@@ -1310,7 +1303,7 @@ int main()
 
                                         }
                                         if (Mag > 0) {
-                                            if (Число == 3) {
+                                            if (chislo == 3) {
                                                 Mag -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного мага" << "\n";
@@ -1344,11 +1337,11 @@ int main()
                                 case '2': {
                                     if (f == '1') {
 
-                                        Число = rand() % 3 + 1;
+                                        chislo = rand() % 3 + 1;
                                         if (Elf > 0) {
 
 
-                                            if (Число == 1) {
+                                            if (chislo == 1) {
                                                 Elf -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного эльфа" << "\n";
@@ -1358,7 +1351,7 @@ int main()
                                         if (Pex > 0) {
 
 
-                                            if (Число == 2) {
+                                            if (chislo == 2) {
                                                 Pex -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного пехотинца" << "\n";
@@ -1366,7 +1359,7 @@ int main()
 
                                         }
                                         if (Mag > 0) {
-                                            if (Число == 3) {
+                                            if (chislo == 3) {
                                                 Mag -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного мага" << "\n";
@@ -1396,11 +1389,11 @@ int main()
                                     }
                                     else if (f == '2') {
 
-                                        Число = rand() % 3 + 1;
+                                        chislo = rand() % 3 + 1;
                                         if (Elf > 0) {
 
 
-                                            if (Число == 1) {
+                                            if (chislo == 1) {
                                                 Elf -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного эльфа" << "\n";
@@ -1410,7 +1403,7 @@ int main()
                                         if (Pex > 0) {
 
 
-                                            if (Число == 2) {
+                                            if (chislo == 2) {
                                                 Pex -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного пехотинца" << "\n";
@@ -1418,7 +1411,7 @@ int main()
 
                                         }
                                         if (Mag > 0) {
-                                            if (Число == 3) {
+                                            if (chislo == 3) {
                                                 Mag -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного мага" << "\n";
@@ -1449,11 +1442,11 @@ int main()
 
                                     else if (f == '3') {
 
-                                        Число = rand() % 3 + 1;
+                                        chislo = rand() % 3 + 1;
                                         if (Elf > 0) {
 
 
-                                            if (Число == 1) {
+                                            if (chislo == 1) {
                                                 Elf -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного эльфа" << "\n";
@@ -1463,7 +1456,7 @@ int main()
                                         if (Pex > 0) {
 
 
-                                            if (Число == 2) {
+                                            if (chislo == 2) {
                                                 Pex -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного пехотинца" << "\n";
@@ -1471,7 +1464,7 @@ int main()
 
                                         }
                                         if (Mag > 0) {
-                                            if (Число == 3) {
+                                            if (chislo == 3) {
                                                 Mag -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного мага" << "\n";
@@ -1504,11 +1497,11 @@ int main()
                                 case '3': {
                                     if (f == '1') {
 
-                                        Число = rand() % 3 + 1;
+                                        chislo = rand() % 3 + 1;
                                         if (Elf > 0) {
 
 
-                                            if (Число == 1) {
+                                            if (chislo == 1) {
                                                 Elf -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного эльфа" << "\n";
@@ -1518,7 +1511,7 @@ int main()
                                         if (Pex > 0) {
 
 
-                                            if (Число == 2) {
+                                            if (chislo == 2) {
                                                 Pex -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного пехотинца" << "\n";
@@ -1526,7 +1519,7 @@ int main()
 
                                         }
                                         if (Mag > 0) {
-                                            if (Число == 3) {
+                                            if (chislo == 3) {
                                                 Mag -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного мага" << "\n";
@@ -1556,11 +1549,11 @@ int main()
                                     }
                                     else if (f == '2') {
 
-                                        Число = rand() % 3 + 1;
+                                        chislo = rand() % 3 + 1;
                                         if (Elf > 0) {
 
 
-                                            if (Число == 1) {
+                                            if (chislo == 1) {
                                                 Elf -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного эльфа" << "\n";
@@ -1570,7 +1563,7 @@ int main()
                                         if (Pex > 0) {
 
 
-                                            if (Число == 2) {
+                                            if (chislo == 2) {
                                                 Pex -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного пехотинца" << "\n";
@@ -1578,7 +1571,7 @@ int main()
 
                                         }
                                         if (Mag > 0) {
-                                            if (Число == 3) {
+                                            if (chislo == 3) {
                                                 Mag -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного мага" << "\n";
@@ -1609,11 +1602,11 @@ int main()
 
                                     else if (f == '3') {
 
-                                        Число = rand() % 3 + 1;
+                                        chislo = rand() % 3 + 1;
                                         if (Elf > 0) {
 
 
-                                            if (Число == 1) {
+                                            if (chislo == 1) {
                                                 Elf -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного эльфа" << "\n";
@@ -1623,7 +1616,7 @@ int main()
                                         if (Pex > 0) {
 
 
-                                            if (Число == 2) {
+                                            if (chislo == 2) {
                                                 Pex -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного пехотинца" << "\n";
@@ -1631,7 +1624,7 @@ int main()
 
                                         }
                                         if (Mag > 0) {
-                                            if (Число == 3) {
+                                            if (chislo == 3) {
                                                 Mag -= 1;
                                                 otr -= 1;
                                                 cout << "Вы потеряли одного мага" << "\n";
@@ -1687,8 +1680,8 @@ int main()
 
                                             cout << "НОВЫЙ ЛВЛ - " << lvl << "\n";
                                             if (lvl == 2) {
-                                                Навыки навык;
-                                                навык.ПовХП();
+                                                navik nav;
+                                                nav.PovHP();
                                                 if (hp > hpMax) {
                                                     hp = hpMax;
                                                 }
@@ -1698,24 +1691,24 @@ int main()
                                             {
                                                 case '1': {
                                                     if (lvl == 3) {
-                                                        Навыки навык;
-                                                        навык.ОгнШар();
+                                                        navik nav;
+                                                        nav.OgnHar();
                                                         cout << "Вы получили новый навык - Улучшенный огненный шар \n";
                                                     }
                                                     break;
                                                 }
                                                 case '2': {
                                                     if (lvl == 3) {
-                                                        Навыки навык;
-                                                        навык.ТяжелыйУдарМолотом();
+                                                        navik nav;
+                                                        nav.TajYdar();
                                                         cout << "Вы получили новый навык - Тяжелый удар молотом \n";
                                                     }
                                                     break;
                                                 }
                                                 case '3': {
                                                     if (lvl == 3) {
-                                                        Навыки навык;
-                                                        навык.РядОгнСтрел();
+                                                        navik nav;
+                                                        nav.OgnStrel();
                                                         cout << "Вы получили новый навык - Ряд огненных стрел \n";
                                                     }
                                                     break;
@@ -1741,26 +1734,26 @@ int main()
 
                                     if (n == 1) {
 
-                                        Артефакты артефакты;
-                                        артефакты.НагрудникЗдоровья();
+                                        artef art;
+                                        art.Nagrudnik();
 
                                         cout << "Вы получили Нагрудник Здоровья!!! (+20 к хп)";
                                     }
                                     if (n == 3) {
-                                        Артефакты артефакты;
-                                        артефакты.НаручиСилы();
+                                        artef art;
+                                        art.Nar();
 
                                         cout << "Вы получили Наручи Силы!!! (+5 урона к первой атаке)";
                                     }
                                     if (n == 5) {
-                                        Артефакты артефакты;
-                                        артефакты.ШлемЗдоровья();
+                                        artef art;
+                                        art.Hlem();
 
                                         cout << "Вы получили Шлем Здоровья!!! (+10 к хп)";
                                     }
                                     if (n == 7) {
-                                        Артефакты артефакты;
-                                        артефакты.ПоножиСилы();
+                                        artef art;
+                                        art.Ponog();
 
                                         cout << "Вы получили Поножи Силы!!! (+10 урона к первой атаке)";
                                     }
@@ -1778,8 +1771,8 @@ int main()
 
                                             cout << "НОВЫЙ ЛВЛ - " << lvl << "\n";
                                             if (lvl == 2) {
-                                                Навыки навык;
-                                                навык.ПовХП();
+                                                navik nav;
+                                                nav.PovHP();
                                                 if (hp > hpMax) {
                                                     hp = hpMax;
                                                 }
@@ -1789,24 +1782,24 @@ int main()
                                             {
                                                 case '1': {
                                                     if (lvl == 3) {
-                                                        Навыки навык;
-                                                        навык.ОгнШар();
+                                                        navik nav;
+                                                        nav.OgnHar();
                                                         cout << "Вы получили новый навык - Улучшенный огненный шар \n";
                                                     }
                                                     break;
                                                 }
                                                 case '2': {
                                                     if (lvl == 3) {
-                                                        Навыки навык;
-                                                        навык.ТяжелыйУдарМолотом();
+                                                        navik nav;
+                                                        nav.TajYdar();
                                                         cout << "Вы получили новый навык - Тяжелый удар молотом \n";
                                                     }
                                                     break;
                                                 }
                                                 case '3': {
                                                     if (lvl == 3) {
-                                                        Навыки навык;
-                                                        навык.РядОгнСтрел();
+                                                        navik nav;
+                                                        nav.OgnStrel();
                                                         cout << "Вы получили новый навык - Ряд огненных стрел \n";
                                                     }
                                                     break;
@@ -1836,26 +1829,26 @@ int main()
 
                                     if (n == 1) {
 
-                                        Артефакты артефакты;
-                                        артефакты.НагрудникЗдоровья();
+                                        artef art;
+                                        art.Nagrudnik();
 
                                         cout << "Вы получили Нагрудник Здоровья!!! (+20 к хп)";
                                     }
                                     if (n == 2) {
-                                        Артефакты артефакты;
-                                        артефакты.НаручиСилы();
+                                        artef art;
+                                        art.Nar();
 
                                         cout << "Вы получили Наручи Силы!!! (+5 урона к первой атаке)";
                                     }
                                     if (n == 3) {
-                                        Артефакты артефакты;
-                                        артефакты.ШлемЗдоровья();
+                                        artef art;
+                                        art.Hlem();
 
                                         cout << "Вы получили Шлем Здоровья!!! (+10 к хп)";
                                     }
                                     if (n == 4) {
-                                        Артефакты артефакты;
-                                        артефакты.ПоножиСилы();
+                                        artef art;
+                                        art.Ponog();
 
                                         cout << "Вы получили Поножи силы!!! (+10 урона к первой атаке)";
                                     }
@@ -1873,8 +1866,8 @@ int main()
 
                                             cout << "НОВЫЙ ЛВЛ - " << lvl << "\n";
                                             if (lvl == 2) {
-                                                Навыки навык;
-                                                навык.ПовХП();
+                                                navik nav;
+                                                nav.PovHP();
                                                 if (hp > hpMax) {
                                                     hp = hpMax;
                                                 }
@@ -1884,24 +1877,24 @@ int main()
                                             {
                                                 case '1': {
                                                     if (lvl == 3) {
-                                                        Навыки навык;
-                                                        навык.ОгнШар();
+                                                        navik nav;
+                                                        nav.OgnHar();
                                                         cout << "Вы получили новый навык - Улучшенный огненный шар \n";
                                                     }
                                                     break;
                                                 }
                                                 case '2': {
                                                     if (lvl == 3) {
-                                                        Навыки навык;
-                                                        навык.ТяжелыйУдарМолотом();
+                                                        navik nav;
+                                                        nav.TajYdar();
                                                         cout << "Вы получили новый навык - Тяжелый удар молотом \n";
                                                     }
                                                     break;
                                                 }
                                                 case '3': {
                                                     if (lvl == 3) {
-                                                        Навыки навык;
-                                                        навык.РядОгнСтрел();
+                                                        navik nav;
+                                                        nav.OgnStrel();
                                                         cout << "Вы получили новый навык - Ряд огненных стрел \n";
                                                     }
                                                     break;
@@ -1933,20 +1926,20 @@ int main()
                 system("cls");
                 if (vib == '1') {
                     system("cls");
-                    Класс класс;
-                    класс.Маг();
+                    clas claspers;
+                    claspers.clmag();
                     system("PAUSE");
                 }
                 if (vib == '2') {
                     system("cls");
-                    Класс класс;
-                    класс.Воин();
+                    clas claspers;
+                    claspers.clvoin();
                     system("PAUSE");
                 }
                 if (vib == '3') {
                     system("cls");
-                    Класс класс;
-                    класс.Лучник();
+                    clas claspers;
+                    claspers.clluch();
                     system("PAUSE");
                 }
                 break;
