@@ -357,7 +357,6 @@ int main()
 
                 if (vib == '3' || vib == '2' || vib == '1') {
 
-
                     switch (vib) {
 
                         case '1': {
@@ -424,12 +423,86 @@ int main()
             }
             save();
         }
-
     }
+    else {
+        system("cls");
 
+        cout << "Выбери класс своего персонажа: \n";
+        cout << "1. Маг \n";
+        cout << "2. Воин \n";
+        cout << "3. Лучник \n";
+        cout << "Выбор: ";
+        while (true) {
+            vib = input_char();
 
+            if (vib == '3' || vib == '2' || vib == '1') {
 
+                switch (vib) {
 
+                    case '1': {
+
+                        hp = 100;
+                        hpMax = 100;
+                        lvl = 1;
+                        op1 = 0;
+                        op2 = 100;
+                        zahita = 8;
+                        damage = 25;
+                        sila = 7;
+                        coin = 10000;
+                        vinos = 8;
+                        intelect = 15;
+
+                        clas clasper;
+                        clasper.clmag();
+                        system("PAUSE");
+                        break;
+                    }
+                    case '2': {
+
+                        hp = 150;
+                        hpMax = 150;
+                        lvl = 1;
+                        op1 = 0;
+                        op2 = 100;
+                        zahita = 10;
+                        damage = 30;
+                        sila = 10;
+                        coin = 1000;
+                        vinos = 10;
+                        intelect = 7;
+
+                        clas clasper;
+                        clasper.clvoin();
+                        system("PAUSE");
+                        break;
+                    }
+                    case '3': {
+
+                        hp = 120;
+                        hpMax = 120;
+                        lvl = 1;
+                        op1 = 90;
+                        op2 = 100;
+                        zahita = 5;
+                        damage = 35;
+                        sila = 8;
+                        coin = 1000;
+                        vinos = 12;
+                        intelect = 7;
+
+                        clas clasper;
+                        clasper.clluch();
+                        system("PAUSE");
+                        break;
+                    }
+                }
+                break;
+            }
+
+        }
+        save();
+    }
     while (true) {
 
         cout << "\n";
@@ -523,8 +596,6 @@ int main()
                 system("cls");
 
                 if (hp > 0) {
-
-
 
                     cout << "Вы вошли в лес полный опасностей и приключений. Никогда не знаешь, кого здесь встретишь... \n";
                     cout << "------------------------------------------------------------------------------------------ \n";
