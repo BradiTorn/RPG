@@ -187,7 +187,7 @@ void load() {
         at1 = loade["at1"].get<string>();
         at2 = loade["at2"].get<string>();
         at3 = loade["at3"].get<string>();
-        vib = loade["vib"].get<char>();
+        vib = loade["i"].get<char>();
 
     }
 
@@ -342,93 +342,91 @@ int main()
             at1 = lop["at1"].get<string>();
             at2 = lop["at2"].get<string>();
             at3 = lop["at3"].get<string>();
-            vib = lop["vib"].get<char>();
+            vib = lop["i"].get<char>();
         }
+        else {
+            system("cls");
 
-    }
-    else {
+            cout << "Выбери класс своего персонажа: \n";
+            cout << "1. Маг \n";
+            cout << "2. Воин \n";
+            cout << "3. Лучник \n";
+            cout << "Выбор: ";
+            while (true) {
+                vib = input_char();
 
-
-
-        system("cls");
-
-        cout << "Выбери класс своего персонажа: \n";
-        cout << "1. Маг \n";
-        cout << "2. Воин \n";
-        cout << "3. Лучник \n";
-        cout << "Выбор: ";
-        while (true) {
-            vib = input_char();
-
-            if (vib == '3' || vib == '2' || vib == '1') {
+                if (vib == '3' || vib == '2' || vib == '1') {
 
 
-                switch (vib) {
+                    switch (vib) {
 
-                    case '1': {
+                        case '1': {
 
-                        hp = 100;
-                        hpMax = 100;
-                        lvl = 1;
-                        op1 = 0;
-                        op2 = 100;
-                        zahita = 8;
-                        damage = 25;
-                        sila = 7;
-                        coin = 10000;
-                        vinos = 8;
-                        intelect = 15;
+                            hp = 100;
+                            hpMax = 100;
+                            lvl = 1;
+                            op1 = 0;
+                            op2 = 100;
+                            zahita = 8;
+                            damage = 25;
+                            sila = 7;
+                            coin = 10000;
+                            vinos = 8;
+                            intelect = 15;
 
-                        clas clasper;
-                        clasper.clmag();
-                        system("PAUSE");
-                        break;
+                            clas clasper;
+                            clasper.clmag();
+                            system("PAUSE");
+                            break;
+                        }
+                        case '2': {
+
+                            hp = 150;
+                            hpMax = 150;
+                            lvl = 1;
+                            op1 = 0;
+                            op2 = 100;
+                            zahita = 10;
+                            damage = 30;
+                            sila = 10;
+                            coin = 1000;
+                            vinos = 10;
+                            intelect = 7;
+
+                            clas clasper;
+                            clasper.clvoin();
+                            system("PAUSE");
+                            break;
+                        }
+                        case '3': {
+
+                            hp = 120;
+                            hpMax = 120;
+                            lvl = 1;
+                            op1 = 90;
+                            op2 = 100;
+                            zahita = 5;
+                            damage = 35;
+                            sila = 8;
+                            coin = 1000;
+                            vinos = 12;
+                            intelect = 7;
+
+                            clas clasper;
+                            clasper.clluch();
+                            system("PAUSE");
+                            break;
+                        }
                     }
-                    case '2': {
-
-                        hp = 150;
-                        hpMax = 150;
-                        lvl = 1;
-                        op1 = 0;
-                        op2 = 100;
-                        zahita = 10;
-                        damage = 30;
-                        sila = 10;
-                        coin = 1000;
-                        vinos = 10;
-                        intelect = 7;
-
-                        clas clasper;
-                        clasper.clvoin();
-                        system("PAUSE");
-                        break;
-                    }
-                    case '3': {
-
-                        hp = 120;
-                        hpMax = 120;
-                        lvl = 1;
-                        op1 = 90;
-                        op2 = 100;
-                        zahita = 5;
-                        damage = 35;
-                        sila = 8;
-                        coin = 1000;
-                        vinos = 12;
-                        intelect = 7;
-
-                        clas clasper;
-                        clasper.clluch();
-                        system("PAUSE");
-                        break;
-                    }
+                    break;
                 }
-                break;
-            }
 
+            }
+            save();
         }
-        save();
+
     }
+
 
 
 
@@ -465,10 +463,10 @@ int main()
 
                     cout << "Золото -  " << coin << "\n";
                     cout << "----------------------- \n";
-                    cout << "chislo отряда -  " << otr << "\n";
-                    cout << "chislo эльфов в отряде -  " << Elf << "\n";
-                    cout << "chislo обученных пехотинцев в отряде -  " << Pex << "\n";
-                    cout << "chislo огненных магов в отряде -  " << Mag << "\n";
+                    cout << "Число отряда -  " << otr << "\n";
+                    cout << "Число эльфов в отряде -  " << Elf << "\n";
+                    cout << "Число обученных пехотинцев в отряде -  " << Pex << "\n";
+                    cout << "Число огненных магов в отряде -  " << Mag << "\n";
 
                     cout << "\n";
                     cout << "\n";
