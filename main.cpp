@@ -158,7 +158,6 @@ void save() {
     save << sav;
     save.close();
 
-
 };
 
 void load() {
@@ -190,9 +189,6 @@ void load() {
         vib = loade["i"].get<char>();
 
     }
-
-
-
 };
 
 
